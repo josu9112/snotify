@@ -79,7 +79,7 @@ public class NearbyStops {
 	 * @return A JSONArray with nearby stops (if any exists).
 	 * @throws IOException
 	 */
-	public JSONArray excecuteRequest() throws IOException {
+	public JSONArray executeRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
 			return null;

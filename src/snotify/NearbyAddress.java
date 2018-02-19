@@ -36,7 +36,7 @@ public class NearbyAddress {
 		this.coordLon = coordLon;
 	}
 	
-	public JSONArray excecuteRequest() throws IOException {
+	public JSONArray executeRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
 			return null;

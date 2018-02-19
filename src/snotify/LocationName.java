@@ -45,7 +45,7 @@ public class LocationName {
 	 * @return A JSONArray with possible matches of stops, stations, points of interset or addresses.
 	 * @throws IOException
 	 */
-	public JSONArray excecuteRequest() throws IOException {
+	public JSONArray executeRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
 			return null;

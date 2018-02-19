@@ -229,7 +229,7 @@ public class DepartureBoard {
 	 * @return A JSONArray containing Departures from given parameters. Returns null if any of stopId, date or time parameters are null. These are required!
 	 * @throws IOException
 	 */
-	public JSONArray excecuteRequest() throws IOException {
+	public JSONArray executeRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
 			return null;

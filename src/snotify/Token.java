@@ -84,7 +84,7 @@ public class Token {
 		nearAdd.setCoordLat("57.489536");
 		nearAdd.setCoordLong("12.0800506");
 		
-		JSONArray arr = nearAdd.excecuteRequest();
+		JSONArray arr = nearAdd.executeRequest();
 		
 		for(int i = 0; i < arr.length(); i++)
 			System.out.println(arr.get(i));
