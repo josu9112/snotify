@@ -14,21 +14,37 @@ import com.google.api.client.http.HttpResponse;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
+/**
+ * @author John Sundemo & Rustam Stanikzai
+ * Class LocationName is used to retrive a list of possible stops, stations, points of intersets or addresses from given input (if any exists).
+ */
 public class LocationName {
 
 	private Token token;
 	private final String baseRequestAddress = "https://api.vasttrafik.se/bin/rest.exe/v2/location.name";
 	private String locationName;
 	
+	/**
+	 * Constructs a LocationName. The locationName is initialized as null. A locationName is required before request.
+	 * @param token Needs a access-token from Västtrafik.
+	 */
 	public LocationName(Token token) {
 		this.token = token;
 		this.locationName = null;
 	}
 	
+	/**
+	 * @param locationName Name of a location.
+	 */
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
 	
+	/**
+	 * Creates a JSONArray with possible matches from given locatioName. locationName is required!
+	 * @return A JSONArray with possible matches of stops, stations, points of interset or addresses.
+	 * @throws IOException
+	 */
 	public JSONArray excecuteRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
@@ -55,6 +71,10 @@ public class LocationName {
 		return new JSONObject(trimmedstring).getJSONArray("StopLocation");
 	}
 	
+	/**
+	 * This private function builds a url-string of set parameters to send as request.
+	 * @return A String with the link of set parameters.
+	 */
 	private String buildRequestLink() {
 		if(this.locationName == null)
 			return null;
