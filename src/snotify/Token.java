@@ -1,6 +1,8 @@
 package snotify;
 
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Scanner;
 
 import org.json.JSONArray;
 
@@ -9,9 +11,6 @@ import com.google.api.client.auth.oauth2.AuthorizationCodeTokenRequest;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson.JacksonFactory;
-
-
-
 
 
 /**
@@ -70,7 +69,16 @@ public class Token {
 	
 
 	public static void main(String[] args) throws IOException {
-		Token token = new Token("client_id", "client_secret");
+		Scanner scan = new Scanner(new FileReader("C:\\Users\\John\\Desktop\\vast.txt"));
+		
+		String id = scan.nextLine();
+		id = id.substring(id.indexOf(" ")+1);
+		String secret = scan.nextLine();
+		secret = secret.substring(secret.indexOf(" ")+1);
+		
+		scan.close();
+		
+		Token token = new Token(id, secret);
 		
 //		DepartureBoard dep = new DepartureBoard(token);
 //		dep.setStartId("9022014019110016");
@@ -80,14 +88,14 @@ public class Token {
 //		LocationName loc = new LocationName(token);
 //		loc.setLocationName("Kungsbacka");
 		
-		NearbyStops nearAdd = new NearbyStops(token);
-		nearAdd.setCoordLat("57.489536");
-		nearAdd.setCoordLong("12.0800506");
-		
-		JSONArray arr = nearAdd.executeRequest();
-		
-		for(int i = 0; i < arr.length(); i++)
-			System.out.println(arr.get(i));
+//		NearbyStops nearAdd = new NearbyStops(token);
+//		nearAdd.setCoordLat("57.489536");
+//		nearAdd.setCoordLong("12.0800506");
+//		
+//		JSONArray arr = nearAdd.executeRequest();
+//		
+//		for(int i = 0; i < arr.length(); i++)
+//			System.out.println(arr.get(i));
 		
 	}
 
