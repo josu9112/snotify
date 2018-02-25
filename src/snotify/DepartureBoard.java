@@ -96,7 +96,6 @@ public class DepartureBoard {
 		this.date = null;
 		this.time = null;
 		this.stopId = null;
-		this.stopId = null;
 		this.timeSpan = 0;
 		this.maxDeparturesPerLine = 0;
 		this.useVasttag = 1;
@@ -162,7 +161,7 @@ public class DepartureBoard {
 	 * @param useVasttag Use of Västtåg. true == yes, false == not.
 	 */
 	public void setUseVasttag(boolean useVasttag) {
-		if(useVasttag) {this.useVasttag = 1;} else {this.useVasttag = 0;}
+		this.useVasttag = (useVasttag) ? 1 : 0;
 	}
 	
 	
@@ -171,7 +170,7 @@ public class DepartureBoard {
 	 * @param useLongDistanceTrain Use of long distance trains. true == yes, false == not.
 	 */
 	public void setUseLongDistanceTrain(boolean useLongDistanceTrain) {
-		if(useLongDistanceTrain) {this.useLongDistanceTrain = 1;} else {this.useLongDistanceTrain = 0;}
+		this.useLongDistanceTrain = (useLongDistanceTrain) ? 1 : 0;
 	}
 	
 	/**
@@ -179,7 +178,7 @@ public class DepartureBoard {
 	 * @param useRegionalTrain Use of regional trains. true == yes, false == not.
 	 */
 	public void setUseRegionalTrain(boolean useRegionalTrain) {
-		if(useRegionalTrain) {this.useRegionalTrain = 1;} else {this.useRegionalTrain = 0;}
+		this.useRegionalTrain = (useRegionalTrain) ? 1 : 0;
 	}
 	
 	/**
@@ -187,7 +186,7 @@ public class DepartureBoard {
 	 * @param useBus Use of busses. true == yes, false == not.
 	 */
 	public void setUseBus(boolean useBus) {
-		if(useBus) {this.useBus = 1;} else {this.useBus = 0;}
+		this.useBus = (useBus) ? 1 : 0;
 	}
 	
 	/**
@@ -195,7 +194,7 @@ public class DepartureBoard {
 	 * @param useBoat Use of boats. true == yes, false == not.
 	 */
 	public void setUseBoat(boolean useBoat) {
-		if(useBoat) {this.useBoat = 1;} else {this.useBoat = 0;}
+		this.useBoat = (useBoat) ? 1 : 0;
 	}
 	
 	
@@ -204,7 +203,7 @@ public class DepartureBoard {
 	 * @param useTram Use of trams. true == yes, false == not.
 	 */
 	public void setUseTram(boolean useTram) {
-		if(useTram) {this.useTram = 1;} else {this.useTram = 0;}
+		this.useTram = (useTram) ? 1 : 0;
 	}
 	
 	
@@ -213,7 +212,7 @@ public class DepartureBoard {
 	 * @param excludeDR Exclude journeys which require tel. registration. To exclude, set to false.
 	 */
 	public void setExcludeDR(boolean excludeDR) {
-		if(excludeDR) {this.excludeDR = 1;} else {this.excludeDR = 0;}
+		this.excludeDR = (excludeDR) ? 1 : 0;
 	}
 	
 	/**
@@ -221,7 +220,7 @@ public class DepartureBoard {
 	 * @param true == yes, false == not.
 	 */
 	public void setNeedJourneyDetail(boolean needJourneyDetail) {
-		if(needJourneyDetail) {this.needJourneyDetail = 1;} else {this.needJourneyDetail = 0;}
+		this.needJourneyDetail = (needJourneyDetail) ? 1 : 0;
 	}
 	
 	/**
