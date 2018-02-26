@@ -30,6 +30,7 @@ public class Token {
 	public Token(String client_id, String client_secret) {
 		this.client_id = client_id;
 		this.client_secret = client_secret;
+		
 		try {
 			response = new AuthorizationCodeTokenRequest(new NetHttpTransport(), new JacksonFactory(),
 					new GenericUrl("https://api.vasttrafik.se/token"), "POST")
@@ -38,6 +39,7 @@ public class Token {
 							.set("Content-type", "application/x-www-form-urlencoded").execute();
 		} catch (IOException e) {
 			e.printStackTrace();
+			
 		}
 	}
 
