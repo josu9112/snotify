@@ -228,7 +228,7 @@ public class DepartureBoard {
 	 * @return A JSONArray containing Departures from given parameters. Returns null if any of stopId, date or time parameters are null. These are required!
 	 * @throws IOException
 	 */
-	public JSONArray executeRequest() throws IOException {
+	public JSONObject executeRequest() throws IOException {
 		String requestLink = buildRequestLink();
 		if(requestLink == null)
 			return null;
@@ -248,10 +248,25 @@ public class DepartureBoard {
 		req.setReadTimeout(30000);
 		HttpResponse resp = req.execute();
 		
-		String jsonresponse = resp.parseAsString();
-		String trimmedstring = "{" + jsonresponse.substring(jsonresponse.indexOf("\"Departure\""), jsonresponse.length()-1);
+		while(resp.getStatusCode()!=200) {
+			token.renewToken();
+			req.setHeaders(new HttpHeaders().setAuthorization("Bearer " + this.token.getAccessToken()));
+			req.setConnectTimeout(30000);
+			req.setReadTimeout(30000);
+			resp = req.execute();
+		}
 		
-		return new JSONObject(trimmedstring).getJSONArray("Departure");
+		
+		String jsonresponse = resp.parseAsString();
+		
+		JSONObject temp = new JSONObject(jsonresponse);
+		if(temp.getJSONObject("DepartureBoard").has("error"))
+			return null;
+		
+		if(temp.getJSONObject("DepartureBoard").has("Departure"))
+			return temp.getJSONObject("DepartureBoard");
+		
+		return null;
 	}
 	
 	
@@ -283,13 +298,12 @@ public class DepartureBoard {
 		if(this.excludeDR == 0)
 			requestLink = requestLink + "&excludeDR=0";
 		if(this.needJourneyDetail == 0)
-			requestLink = requestLink + "&useLDTrain=0";
+			requestLink = requestLink + "&needJourneyDetail=0";
 		if(this.timeSpan != 0)
-			requestLink = requestLink + "&useLDTrain=" + this.timeSpan;
+			requestLink = requestLink + "&timeSpan=" + this.timeSpan;
 		if(this.maxDeparturesPerLine != 0)
-			requestLink = requestLink + "&useLDTrain=" + this.maxDeparturesPerLine;
-		if(this.needJourneyDetail == 0)
-			requestLink = requestLink + "&useLDTrain=0";
+			requestLink = requestLink + "&maxDeparturesPerLine=" + this.maxDeparturesPerLine;
+		
 		
 		return requestLink + "&format=json";
 	}
